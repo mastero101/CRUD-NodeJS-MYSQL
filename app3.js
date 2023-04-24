@@ -47,8 +47,9 @@ app.get('/usuarios/:id', (req, res) => {
     });
 });
 
+
 app.get('/procesadores', (req, res) => {
-    mysql.query('SELECT modelo FROM componentes WHERE tipo = ?', 'procesador', (error, results, fields) => {
+    mysql.query("SELECT modelo, precio FROM componentes WHERE tipo = 'procesador'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
