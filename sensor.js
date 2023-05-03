@@ -35,6 +35,17 @@ app.get('/data', (req, res) => {
     });
 });
 
+app.get('/kwhr', (req, res) => {
+    mysql.query('SELECT SUM(watts/60)/1000 AS KWhrAcumulado FROM sensor;', (error, results, fields) => {
+        if (error) {
+            console.error('Error al obtener datos de la base de datos:', error);
+            res.status(500).send('Error al obtener datos de la base de datos.');
+            return;
+        }
+        res.send(results);
+    });
+});
+
 app.get('/sensor/:id', (req, res) => {
     const id = req.params.id;
     mysql.query('SELECT * FROM sensor WHERE id = ?', id, (error, results, fields) => {
