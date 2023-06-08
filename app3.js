@@ -127,7 +127,7 @@ app.get('/graficas', (req, res) => {
 
 
 app.get('/gabinetes', (req, res) => {
-    mysql.query("SELECT modelo, precio FROM componentes WHERE tipo = 'gabinete'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda FROM componentes WHERE tipo = 'gabinete'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
