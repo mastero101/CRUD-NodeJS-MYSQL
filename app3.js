@@ -47,6 +47,21 @@ app.get('/usuarios/:id', (req, res) => {
     });
 });
 
+app.get('/usuarios/:modelo', (req, res) => {
+    const id = req.params.id;
+    mysql.query('SELECT * FROM componentes WHERE modelo = ?', id, (error, results, fields) => {
+      if (error) {
+        console.error('Error al obtener datos de la base de datos:', error);
+        res.status(500).send('Error al obtener datos de la base de datos.');
+        return;
+      }
+      if (results.length === 0) {
+        res.status(404).send('No se encontró ningún usuario con el ID proporcionado.');
+        return;
+      }
+      res.send(results[0]);
+    });
+});
 
 app.get('/procesadores', (req, res) => {
     mysql.query("SELECT modelo, precio, tienda FROM componentes WHERE tipo = 'procesador'", (error, results, fields) => {
