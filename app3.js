@@ -47,7 +47,7 @@ app.get('/usuarios/:id', (req, res) => {
     });
 });
 
-app.get('/usuarios/:modelo', (req, res) => {
+app.get('/modelo/:modelo', (req, res) => {
     const modelo = req.params.modelo;
     mysql.query('SELECT * FROM componentes WHERE modelo = ?', modelo, (error, results, fields) => {
       if (error) {
