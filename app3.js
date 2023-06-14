@@ -49,7 +49,9 @@ app.get('/usuarios/:id', (req, res) => {
 
 app.get('/modelo/:modelo', (req, res) => {
     const modelo = req.params.modelo;
-    mysql.query('SELECT * FROM componentes WHERE modelo LIKE '%{modelo}%'', modelo, (error, results, fields) => {
+    const query = 'SELECT * FROM componentes WHERE modelo LIKE ?';
+    const searchTerm = `%${modelo}%`;
+    mysql.query(query, searchTerm, (error, results, fields) => {
       if (error) {
         console.error('Error al obtener datos de la base de datos:', error);
         res.status(500).send('Error al obtener datos de la base de datos.');
