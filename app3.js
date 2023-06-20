@@ -77,7 +77,7 @@ app.get('/procesadores', (req, res) => {
 });
 
 app.get('/motherboards', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, consumo, socket, ram FROM componentes WHERE tipo = 'motherboard'", (error, results, fields) => { 
+    mysql.query("SELECT modelo, precio, tienda, consumo, socket, rams FROM componentes WHERE tipo = 'motherboard'", (error, results, fields) => { 
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -88,7 +88,7 @@ app.get('/motherboards', (req, res) => {
 });
 
 app.get('/rams', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, consumo, ram FROM componentes WHERE tipo = 'ram'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, consumo, rams FROM componentes WHERE tipo = 'ram'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
