@@ -121,7 +121,7 @@ app.get('/disipadores', (req, res) => {
 });
 
 app.get('/fuentes', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, consumo FROM componentes WHERE tipo = 'psu'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, consumo, potencia FROM componentes WHERE tipo = 'psu'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
