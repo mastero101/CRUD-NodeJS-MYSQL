@@ -16,8 +16,8 @@ app.use(function(req, res, next) {
 });
 
 const options = {
-  key: fs.readFileSync('privkey.pem'),
-  cert: fs.readFileSync('fullchain.pem')
+  key: fs.readFileSync('/etc/letsencrypt/live/nodemysql12.duckdns.org-0004/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/nodemysql12.duckdns.org-0004/fullchain.pem')
 };
 
 app.get('/', (req, res) => {
@@ -66,7 +66,7 @@ app.get('/modelo/:modelo', (req, res) => {
 });
 
 app.get('/procesadores', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo, socket FROM componentes WHERE tipo = 'procesador'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, socket, img FROM componentes WHERE tipo = 'procesador'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -77,7 +77,7 @@ app.get('/procesadores', (req, res) => {
 });
 
 app.get('/motherboards', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo, socket, rams FROM componentes WHERE tipo = 'motherboard'", (error, results, fields) => { 
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, socket, rams, img FROM componentes WHERE tipo = 'motherboard'", (error, results, fields) => { 
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -88,7 +88,7 @@ app.get('/motherboards', (req, res) => {
 });
 
 app.get('/rams', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo, rams FROM componentes WHERE tipo = 'ram'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, rams, img FROM componentes WHERE tipo = 'ram'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -99,7 +99,7 @@ app.get('/rams', (req, res) => {
 });
 
 app.get('/almacenamientos', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo FROM componentes WHERE tipo = 'almacenamiento'", (error, results, fields) => { 
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, img FROM componentes WHERE tipo = 'almacenamiento'", (error, results, fields) => { 
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -110,7 +110,7 @@ app.get('/almacenamientos', (req, res) => {
 });
 
 app.get('/disipadores', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo FROM componentes WHERE tipo = 'disipador'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, img FROM componentes WHERE tipo = 'disipador'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -121,7 +121,7 @@ app.get('/disipadores', (req, res) => {
 });
 
 app.get('/fuentes', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo, potencia FROM componentes WHERE tipo = 'psu'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, potencia, img FROM componentes WHERE tipo = 'psu'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -132,7 +132,7 @@ app.get('/fuentes', (req, res) => {
 });
 
 app.get('/graficas', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo FROM componentes WHERE tipo = 'gpu'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, img FROM componentes WHERE tipo = 'gpu'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
@@ -144,7 +144,7 @@ app.get('/graficas', (req, res) => {
 
 
 app.get('/gabinetes', (req, res) => {
-    mysql.query("SELECT modelo, precio, tienda, url, consumo FROM componentes WHERE tipo = 'gabinete'", (error, results, fields) => {
+    mysql.query("SELECT modelo, precio, tienda, url, consumo, img FROM componentes WHERE tipo = 'gabinete'", (error, results, fields) => {
         if (error) {
             console.error('Error al obtener datos de la base de datos:', error);
             res.status(500).send('Error al obtener datos de la base de datos.');
